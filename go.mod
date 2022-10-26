@@ -3,6 +3,11 @@ module cactusbank.com.br/cactusbank
 go 1.19
 
 require (
+	gorm.io/driver/mysql v1.4.1
+	gorm.io/gorm v1.24.0
+)
+
+require (
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
 	github.com/jackc/pgconn v1.13.0 // indirect
@@ -17,7 +22,5 @@ require (
 	github.com/mattn/go-sqlite3 v1.14.15 // indirect
 	golang.org/x/crypto v0.0.0-20221010152910-d6f0a8c073c2 // indirect
 	golang.org/x/text v0.3.8 // indirect
-	gorm.io/driver/mysql v1.4.1 // indirect
 	gorm.io/driver/postgres v1.4.4 // indirect
-	gorm.io/gorm v1.24.0 // indirect
 )
