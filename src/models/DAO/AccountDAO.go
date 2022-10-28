@@ -2,7 +2,7 @@ package dao
 
 import (
 	"cactusbank.com.br/cactusbank/entities"
-	"cactusbank.com.br/cactusbank/model"
+	model "cactusbank.com.br/cactusbank/src/models"
 )
 
 func FindAll() []entities.Account {
