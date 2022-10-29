@@ -1,7 +1,7 @@
-package dao
+package account
 
 import (
-	"cactusbank.com.br/cactusbank/entities"
+	"cactusbank.com.br/cactusbank/src/entities"
 	model "cactusbank.com.br/cactusbank/src/models"
 )
 
@@ -14,7 +14,6 @@ func FindAll() []entities.Account {
 
 func Find(id int) *entities.Account {
 	account := entities.Account{}
-
 	return &account
 }
 
@@ -28,6 +27,9 @@ func Update(t entities.Account) int {
 	return 0
 }
 
-func Create(t entities.Account) entities.Account {
-	return t
+func Create(t *entities.Account) {
+	db := model.Instance()
+	db.Begin()
+	db.Create(&t)
+	db.Commit()
 }
