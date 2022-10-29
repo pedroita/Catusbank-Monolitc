@@ -13,23 +13,32 @@ func FindAll() []entities.Account {
 }
 
 func Find(id int) *entities.Account {
+	db := model.Instance()
 	account := entities.Account{}
+	db.Find(&account, `id = ?`, id)
 	return &account
 }
 
 func Delete(id int) {
-	// iniciar com begin tran
+	db := model.Instance()
+	account := Find(id)
+	tx := db.Begin()
+	tx.Delete(&account)
+	tx.Commit()
 
 }
 
-func Update(t entities.Account) int {
+func Update(t *entities.Account) {
 	// iniciar com begin tran
-	return 0
+	db := model.Instance()
+	tx := db.Begin()
+	tx.Model(&t).Updates(entities.Account{Name: t.GetName(), DocumentNumber: t.GetDocumentNumber(), Saldo: t.GetSaldo()})
+	tx.Commit()
 }
 
 func Create(t *entities.Account) {
 	db := model.Instance()
-	db.Begin()
-	db.Create(&t)
-	db.Commit()
+	tx := db.Begin()
+	tx.Create(&t)
+	tx.Commit()
 }
