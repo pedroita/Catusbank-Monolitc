@@ -10,6 +10,8 @@ import (
 	"time"
 
 	controller "cactusbank.com.br/cactusbank/src/controllers"
+	"cactusbank.com.br/cactusbank/src/entities"
+	model "cactusbank.com.br/cactusbank/src/models"
 	"github.com/gorilla/mux"
 )
 
@@ -25,6 +27,14 @@ func middleware(next http.Handler) http.Handler {
 }
 
 func main() {
+
+	fmt.Println("Waiting for database...")
+	time.Sleep(60 * 1000)
+	fmt.Println("Try Start Application")
+	db := model.Instance()
+	db.AutoMigrate(&entities.Account{})
+	db.AutoMigrate(&entities.Pix{})
+	db.AutoMigrate(&entities.Transaction{})
 
 	var wait time.Duration
 	flag.DurationVar(&wait, "graceful-timeout", time.Second*15, "the duration for which the server gracefully wait for existing connections to finish - e.g. 15s or 1m")
